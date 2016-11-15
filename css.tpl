@@ -310,11 +310,28 @@ h2, h3 {
 	font-size:12px !important;
 }
 
-.preset { border-right: 1px dotted gray }
-.preset_last { border-right: 0px }
+.presets { width: 100%; display:flex }
+.preset {
+    width: 25%;
+    padding-right:0.5em;
+    border-right: 1px dotted gray;
+}
+
+.preset:nth-child(4) {
+    border-right: 0; padding-right: 0
+}
+
+.preset { }
 .preset a { text-decoration: underline }
 .preset a:hover { color: white !important }
-.preset a { display: block; width: 135px }
+.preset a { }
+
+@media (max-width:600px) {
+    .presets { flex-wrap: wrap }
+    .preset { width: 47% }
+    .preset:nth-child(2) { border-right:0; padding-right: 0 }
+    .preset:nth-child(1), .preset:nth-child(2) { border-bottom: 1px dotted gray; }
+}
 
 .active_preset p {
 	background-color: #60675A !important;
