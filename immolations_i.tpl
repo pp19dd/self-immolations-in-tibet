@@ -49,36 +49,21 @@
 
 		<div class="immolation_project_container">
 
-			<table width="100%" class="tables_can_help">
-				<tbody>
-					<tr>
-						<td style="width:322px">
-							<div id="control"></div>
-						</td>
-						<td>
-							<div id="immolation_map_histogram"></div>
-							<div class="project_note" id="immolation_map_histogram_note">
-								<div class="project_note_inner" id="immolation_map_histogram_note_text">
-									{$slides[5][6]|strip_tags}
-								</div>
-							</div>
-
-							<div id="immolation_map_canvas"></div>
-
-							<div class="immolation_disclaimer project_note">
-								<div class="project_note_inner" id="immolation_disclaimer_text">
-									{$slides[4][6]|strip_tags}
-								</div>
-							</div>
-
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="project_note" id="immolation_map_histogram_note">
+				<div class="project_note_inner" id="immolation_map_histogram_note_text">
+					{$slides[5][6]|strip_tags}
+				</div>
+			</div>
+			<div id="immolation_map_histogram"></div>
+			<div id="control"></div>
+			<div id="immolation_map_canvas"></div>
+			<div class="immolation_disclaimer project_note">
+				<div class="project_note_inner" id="immolation_disclaimer_text">
+					{$slides[4][6]|strip_tags}
+				</div>
+			</div>
 
 			<div style="clear:both"></div>
-
-			<!--<script type="text/javascript" src="immolations.js"></script>-->
 
 			<div id="div_t_i_container">
 				<div id="div_t_i"></div>

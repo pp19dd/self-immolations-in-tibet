@@ -825,7 +825,7 @@ var immolation_project = {
 function resize_window_handler() {
     var w = $(this);
     var new_w = w.width() - 322 - 10;
-    if( new_w > 969 ) new_w = 969;
+    if( new_w > 1300 ) new_w = 1300;
 
     immolation_project.canvas_top.paper.changeSize(new_w, w.height(), false, true);
 }

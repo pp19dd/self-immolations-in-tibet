@@ -279,8 +279,10 @@ h2, h3 {
 	margin-bottom:5px;
 */
 	/*width:647px;*/
+    margin-bottom:0.75em;
     width:100%;
 	background-color: #505050;
+    padding-bottom:0.5em;
 }
 
 .tables_can_help {
@@ -289,7 +291,10 @@ h2, h3 {
 	border-bottom:10px solid black;
 }
 
-#immolation_map_histogram_note {}
+#immolation_map_histogram_note {
+    margin-top: 1em;
+}
+
 .immolation_disclaimer {
 	margin-top:10px;
 }
@@ -325,6 +330,15 @@ h2, h3 {
 .preset a { text-decoration: underline }
 .preset a:hover { color: white !important }
 .preset a { }
+
+/* todo: fix this? */
+/*
+@media (max-width:860px) {
+    .immolation_project_section_1 {
+        background-position: 99% 0%;
+    }
+}
+*/
 
 @media (max-width:600px) {
     .presets { flex-wrap: wrap }
