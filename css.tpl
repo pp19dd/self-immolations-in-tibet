@@ -28,20 +28,21 @@ h2.sitetitle { display: none !important }
 #immolation_project {
     background-color: black;
     color: #DDDDDD;
-/*
-    background-image:url(http://www.voanews.com/MediaAssets2/english/2013_05/Backgroung-final.jpg);
-    background-image:url(http://www.voanews.com/MediaAssets2/english/2013_05/Tibet-Doc---Web-Page-Version-05-no-dots.jpg);
-*/
     max-width:1300px;
     margin: auto;
 }
 
 .immolation_project_section_1 {
-    background-image:url(http://www.voanews.com/MediaAssets2/english/2013_05/Tibet-Web-Page-Version-dots-left.jpg);
-    background-position: top center;
+    background-image:url(img/dots.jpg);
+    /* background-position: top center; */
+    background-position: 77.71% 0%;
     background-repeat: no-repeat;
 }
 
+
+.voa-logo { }
+img.voa-logo  { width: 142px; height:60px; }
+#immolation_project_title { display: flex }
 
 
 /*

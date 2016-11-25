@@ -26,6 +26,7 @@
 		</div>
 		<div id="immolation_project_top_left">
 			<div id="immolation_project_title">
+				<img class="voa-logo" src="img/voa2.png" />
 				<a href="{$slides[7][6]|trim|strip_tags}">
 					<h2>{$slides[0][1]}</h2>
 					<h3>{$slides[1][1]}</h3>
