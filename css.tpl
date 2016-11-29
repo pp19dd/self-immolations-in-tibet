@@ -42,7 +42,12 @@ h2.sitetitle { display: none !important }
 
 .voa-logo { }
 img.voa-logo  { width: 142px; height:60px; }
-#immolation_project_title { display: flex }
+#immolation_project_title {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 
 /*
