@@ -5,7 +5,7 @@ require("vendor/autoload.php");
 $smarty = new Smarty();
 
 # snapshot of data from timeline-editor
-$data = json_decode(file_get_contents("data-en.json"), true);
+$data = json_decode(file_get_contents("data/data-en.json"), true);
 $data["options"] = (object)$data["options"];
 
 # load into smarty
