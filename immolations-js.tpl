@@ -638,8 +638,8 @@ var immolation_project = {
 				map: immolation_project.map,
 				icon: (
 					e.gender == 'Female' ?
-					"http://tools.voanews.com/img/female-2.png" :
-					"http://tools.voanews.com/img/male-2.png"
+					"assets/female-2.png" :
+					"assets/male-2.png"
 				),
 				//title: "SI # = " + e.sinumber + " (" + e.name + ")"
 				title: e.name

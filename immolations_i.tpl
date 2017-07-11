@@ -5,16 +5,15 @@
 <meta charset="utf-8" />
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
-{include file="css.tpl"}
+<link href="assets/style.css" rel="stylesheet" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script type="text/javascript" src="http://www.voanews.com/MediaAssets2/projects/fidget/tabletop-2013-06-02.js"></script>
-<script type="text/javascript" src="http://www.voanews.com/MediaAssets2/projects/fidget/jquery.isotope.min.js"></script>
-<script type="text/javascript" src="http://www.voanews.com/MediaAssets2/projects/fidget/jquery.smooth-scroll.min.js"></script>
-<script type="text/javascript" src="http://www.voanews.com/MediaAssets2/projects/fidget/raphael-min.js"></script>
-<script type="text/javascript" src="http://www.voanews.com/MediaAssets2/projects/fidget/scale.raphael.js"></script>
+<script src="assets/jquery.min.js"></script>
+<script src="assets/tabletop-2013-06-02.js"></script>
+<script src="assets/jquery.isotope.min.js"></script>
+<script src="assets/jquery.smooth-scroll.min.js"></script>
+<script src="assets/raphael-min.js"></script>
+<script src="assets/scale.raphael.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhjY_0Dyf6t_EL803Ve_o_D7sd1O5oKCE"></script>
-
 </head>
 
 <body>
@@ -26,7 +25,7 @@
 		</div>
 		<div id="immolation_project_top_left">
 			<div id="immolation_project_title">
-				<img class="voa-logo" src="img/voa2.png" />
+				<img class="voa-logo" src="assets/voa2.png" />
 				<a href="{$slides[7][6]|trim|strip_tags}">
 					<h2>{$text.title_1}</h2>
 					<h3>{$text.title_2}</h3>

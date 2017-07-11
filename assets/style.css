@@ -1,4 +1,3 @@
-<style type="text/css">
 
 html, body {
     margin:0;
@@ -33,7 +32,7 @@ h2.sitetitle { display: none !important }
 }
 
 .immolation_project_section_1 {
-    background-image:url(img/dots.jpg);
+    background-image:url(assets/dots.jpg);
     /* background-position: top center; */
     background-position: 77.71% 0%;
     background-repeat: no-repeat;
@@ -376,9 +375,3 @@ h2, h3 {
 .t_i_v_has_position_info_hover .t_i_n { background-color: rgb(80,80,80) }
 .t_i_v_has_position_info_hover .ecurr { color: red }
 .t_i_v_has_position_info_hover .ebio {  }
-
-
-
-{$options->additional_css}
-
-</style>
