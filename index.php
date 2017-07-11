@@ -11,12 +11,17 @@ $data["options"] = (object)$data["options"];
 
 # spreadsheet, multi-sheet
 $lang = "English"; // control later via .htaccess?
-$sheet = json_decode(file_get_contents("data/spreadsheet.json"), true);
-$sheet = data_cleanup($sheet[$lang]);
+$sheet_raw = json_decode(file_get_contents("data/spreadsheet.json"), true);
+$sheet = data_cleanup($sheet_raw[$lang]);
+$text_all = text_cleanup($sheet_raw["Page Text"], array('debug' => true));
+
+$smarty->assign( "text", $text_all[$lang] );
+$smarty->assign( "sheet", $sheet );
 
 #### debug
-header("Content-Type: text/html; charset=utf-8");
-echo "<PRE>";print_r( $sheet ); die;
+#### header("Content-Type: text/html; charset=utf-8");
+#### echo "<PRE>";print_r( $sheet_raw["Page Text"] ); die;
+#### echo "<PRE>";print_r( $text_all ); die;
 
 # load into smarty
 foreach( $data as $k => $v ) {
