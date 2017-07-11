@@ -32,7 +32,7 @@ h2.sitetitle { display: none !important }
 }
 
 .immolation_project_section_1 {
-    background-image:url(assets/dots.jpg);
+    background-image:url(dots.jpg);
     /* background-position: top center; */
     background-position: 77.71% 0%;
     background-repeat: no-repeat;
@@ -148,7 +148,7 @@ h2, h3 {
 .immolation_project_section_1 { margin-top:0px}
 
 .immolation_project_section h3, .immolation_project_section h4 {
-    background-image: url(http://www.voanews.com/MediaAssets2/english/2013_05/Red-line-experts.png);
+    background-image: url(Red-line-experts.png);
     background-repeat: no-repeat;
     color: white !important;
     font-size: 14px;
@@ -159,7 +159,7 @@ h2, h3 {
 }
 
 .immolation_project_section h4 {
-    background-image: url(http://www.voanews.com/MediaAssets2/english/2013_05/Resources-red-line.png);
+    background-image: url(Resources-red-line.png);
 }
 
 /* insert from im.css */
