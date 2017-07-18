@@ -24,7 +24,7 @@ function data_cleanup($rows) {
     return( $ret );
 }
 
-function text_cleanup($rows, $sinister_options = array()) {
+function text_cleanup($rows) {
     $ret = array();
 
     foreach( $rows as $row ) {
@@ -33,12 +33,6 @@ function text_cleanup($rows, $sinister_options = array()) {
 
         foreach( $row as $lang => $translation ) {
             if( !isset($ret[$lang]) ) $ret[$lang] = array();
-
-            if( isset($sinister_options["debug"]) && $sinister_options["debug"] === true ) {
-                $translation =
-                    "<span style='position:absolute;background-color:rgba(0,0,0,0.8);padding:5px;border:2px dotted orange; color:orange'>\${text.$symbol}</span> {$translation}";
-            }
-
             $ret[$lang][$symbol] = trim($translation);
         }
     }

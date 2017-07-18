@@ -13,7 +13,7 @@ $data["options"] = (object)$data["options"];
 $lang = "English"; // control later via .htaccess?
 $sheet_raw = json_decode(file_get_contents("data/spreadsheet.json"), true);
 $sheet = data_cleanup($sheet_raw[$lang]);
-$text_all = text_cleanup($sheet_raw["Page Text"], array('debug' => true));
+$text_all = text_cleanup($sheet_raw["Page Text"]);
 
 $smarty->assign( "text", $text_all[$lang] );
 $smarty->assign( "sheet", $sheet );
