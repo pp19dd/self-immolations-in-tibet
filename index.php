@@ -22,6 +22,7 @@ $smarty->assign( "sheet", $sheet );
 #### header("Content-Type: text/html; charset=utf-8");
 #### echo "<PRE>";print_r( $sheet_raw["Page Text"] ); die;
 #### echo "<PRE>";print_r( $text_all ); die;
+#### echo "<PRE>";print_r( $sheet ); die;
 
 # load into smarty
 foreach( $data as $k => $v ) {

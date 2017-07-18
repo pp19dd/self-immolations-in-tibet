@@ -66,12 +66,35 @@
 			<div style="clear:both"></div>
 
 			<div id="div_t_i_container">
-				<div id="div_t_i"></div>
+				<div id="div_t_i">
+{foreach from=$sheet item=entry}
+					<div id="person_{$entry@index}" class="t_i_v t_i_v_id_p{$entry@index}">
+						<div class="t_i_n">
+							<div class="t_i_n_name">{$entry.name}</div>
+							{if $entry.age}<div class="t_i_n_age">Age: {$entry.age}</div>{/if}
+							{if $entry.affiliation}<div class="t_i_n_affiliation">Affiliation: {$entry.affiliation}</div>{/if}
+							{if $entry.url_link}<div class="t_i_n_link"><a href="{$entry.url_link|trim}">Read Story</a></div>{/if}
+						</div>
+						<img width="150" height="180" src="{$entry.image|replace:'.jpg':'_w150_h180.jpg'|default:'https://gdb.voanews.com/C269090C-58EF-4270-8C8A-299D4E447036_w150_h180.png'}" />
+						<div class="edata">
+							<div class="ecurr">
+								Protest date: {$entry.date_of_immolation}<br/>
+								{$entry.current_status}
+							</div>
+							<div class="eloca">Location: {$entry.location_of_incident}</div>
+							<div class="ebio">{$entry.bio}</div>
+						</div>
+					</div>
+
+{/foreach}
+				</div>
 			</div>
 
 		</div>
 
-
+<script>
+$("#div_t_i").isotope();
+</script>
 
 
 	</div>

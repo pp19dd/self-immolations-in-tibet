@@ -784,7 +784,7 @@ var immolation_project = {
 	// execution chain -> doc ready -> .init -> tabletop.callback -> .slides_loaded
 	// makes sense to hold off on loading anything until data arrives
 	init: function() {
-
+return(false);
 		// raphael canvas
 		/*
 		*/
