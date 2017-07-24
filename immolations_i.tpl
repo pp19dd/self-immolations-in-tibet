@@ -8,7 +8,6 @@
 <link href="assets/style.css" rel="stylesheet" />
 
 <script src="assets/jquery.min.js"></script>
-<script src="assets/tabletop-2013-06-02.js"></script>
 <script src="assets/jquery.isotope.min.js"></script>
 <script src="assets/jquery.smooth-scroll.min.js"></script>
 <script src="assets/raphael-min.js"></script>
@@ -65,10 +64,34 @@
 
 			<div style="clear:both"></div>
 
+{function dataattr}{strip}
+{*<!--
+	TODO: need a better data interface
+-->*}
+
+{$all = []}
+
+{foreach from=$entry key=k item=v}
+{if $k != "current_status" && $k != "bio" & $k != "image"}
+{capture assign=temp}
+
+data-{$k|lower}="{$v}"
+
+{/capture}
+{$all[] = $temp}
+{/if}
+{/foreach}
+{/strip}{$all|implode:" "}{/function}
+
 			<div id="div_t_i_container">
 				<div id="div_t_i">
 {foreach from=$sheet item=entry}
-					<div id="person_{$entry@index}" class="t_i_v t_i_v_id_p{$entry@index}">
+					<div id="person_{$entry@index}" {dataattr entry=$entry} class="t_i_v t_i_v_id_p{$entry@index} {$entry.classes}">
+
+{if $entry@index === 0}
+						<pre>{$entry|print_r}</pre>
+{/if}
+
 						<div class="t_i_n">
 							<div class="t_i_n_name">{$entry.name}</div>
 							{if $entry.age}<div class="t_i_n_age">Age: {$entry.age}</div>{/if}
@@ -91,11 +114,6 @@
 			</div>
 
 		</div>
-
-<script>
-$("#div_t_i").isotope();
-</script>
-
 
 	</div>
 

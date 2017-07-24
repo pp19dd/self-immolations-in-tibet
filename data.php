@@ -14,11 +14,42 @@ function row_cleanup($row) {
     return( $h );
 }
 
+function data_get_classes($row) {
+    $classes = array();
+
+    $classes[] = "gender_" . strtolower($row["gender"]);
+
+    $ts = strtotime($row["date_of_immolation"]);
+    $classes[] = "day_" . strtolower(date("l", $ts));
+    $classes[] = "year_month_" . date("Y-m", $ts);
+
+    // age binning pattern ex: 35-39
+    $a = intval($row["age"]);
+    if( $a === 0 ) {
+        $classes[] = "agegroup_unknown";
+    } else {
+        $pa = intval($a/5) * 5;
+        $classes[] = "agegroup_" . $pa . "-" . ($pa+4);
+    }
+
+    $l1 = floatval($row["latitude"]);
+    $l2 = floatval($row["longitude"]);
+
+    if( $l1 !== 0 && $l2 !== 0 ) {
+        $classes[] = "t_i_v_has_position_info";
+    }
+
+    return( implode(" ", $classes ) );
+}
+// classes.push( "age_" + e.agegroup.toLowerCase().replace(" ", "_") );
+
 function data_cleanup($rows) {
     $ret = array();
 
     foreach( $rows as $row ) {
-        $ret[] = row_cleanup($row);
+        $temp = row_cleanup($row);
+        $temp['classes'] = data_get_classes($temp);
+        $ret[] = $temp;
     }
 
     return( $ret );

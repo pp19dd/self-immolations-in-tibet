@@ -784,7 +784,7 @@ var immolation_project = {
 	// execution chain -> doc ready -> .init -> tabletop.callback -> .slides_loaded
 	// makes sense to hold off on loading anything until data arrives
 	init: function() {
-return(false);
+		// return(false);
 		// raphael canvas
 		/*
 		*/
@@ -806,6 +806,19 @@ return(false);
 			immolation_project.map_options
 		);
 
+		$("#div_t_i .t_i_v").each(function(i) {
+			// var classes = ["t_i_v" /*, "gender", "year", "day", "age", "day", "year_month" */ ];
+			// classes.push( "t_i_v_id_p" + i );
+			// classes.push( "gender_" + e.gender.toLowerCase() );
+			// classes.push( "age_" + e.agegroup.toLowerCase().replace(" ", "_") );
+			// classes.push( "day_" + e.dayofweekformula.toLowerCase() );
+			// classes.push( "year_month_" + e.yearmonthformula.toLowerCase() );
+
+		});
+
+		// $("#div_t_i").isotope();
+
+/*
 		Tabletop.init( {
 {if $options->cache_url}
 			proxy: "{$options->cache_url}",
@@ -819,6 +832,8 @@ return(false);
 			},
 			simpleSheet: true
 		});
+*/
+
 	}
 };
 
