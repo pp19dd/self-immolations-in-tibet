@@ -72,31 +72,30 @@
 {$all = []}
 
 {foreach from=$entry key=k item=v}
-{if $k != "current_status" && $k != "bio" & $k != "image"}
 {capture assign=temp}
 
 data-{$k|lower}="{$v}"
 
 {/capture}
 {$all[] = $temp}
-{/if}
 {/foreach}
 {/strip}{$all|implode:" "}{/function}
 
 			<div id="div_t_i_container">
 				<div id="div_t_i">
 {foreach from=$sheet item=entry}
-					<div id="person_{$entry@index}" {dataattr entry=$entry} class="t_i_v t_i_v_id_p{$entry@index} {$entry.classes}">
-
-{if $entry@index === 0}
-						<pre>{$entry|print_r}</pre>
-{/if}
-
+					<div id="person_{$entry@index}" {dataattr entry=$entry.data} class="t_i_v t_i_v_id_p{$entry@index} {$entry.classes}">
 						<div class="t_i_n">
 							<div class="t_i_n_name">{$entry.name}</div>
-							{if $entry.age}<div class="t_i_n_age">Age: {$entry.age}</div>{/if}
-							{if $entry.affiliation}<div class="t_i_n_affiliation">Affiliation: {$entry.affiliation}</div>{/if}
-							{if $entry.url_link}<div class="t_i_n_link"><a href="{$entry.url_link|trim}">Read Story</a></div>{/if}
+{if $entry.age}
+							<div class="t_i_n_age">Age: {$entry.age}</div>
+{/if}
+{if $entry.affiliation}
+							<div class="t_i_n_affiliation">Affiliation: {$entry.affiliation}</div>
+{/if}
+{if $entry.url_link}
+							<div class="t_i_n_link"><a href="{$entry.url_link|trim}">Read Story</a></div>
+{/if}
 						</div>
 						<img width="150" height="180" src="{$entry.image|replace:'.jpg':'_w150_h180.jpg'|default:'https://gdb.voanews.com/C269090C-58EF-4270-8C8A-299D4E447036_w150_h180.png'}" />
 						<div class="edata">

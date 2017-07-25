@@ -8,7 +8,9 @@ function row_cleanup($row) {
     $h = array();
 
     foreach( $row as $k => $v ) {
-        $h[field_cleanup($k)] = trim($v);
+        $key = field_cleanup($k);
+        $h[$key] = trim($v);
+        $h[$key] = str_replace("http://", "https://", $h[$key]);
     }
 
     return( $h );
@@ -17,38 +19,61 @@ function row_cleanup($row) {
 function data_get_classes($row) {
     $classes = array();
 
-    $classes[] = "gender_" . strtolower($row["gender"]);
+    // "gender_" .
+    $classes["g"] = strtolower($row["gender"]);
 
     $ts = strtotime($row["date_of_immolation"]);
-    $classes[] = "day_" . strtolower(date("l", $ts));
-    $classes[] = "year_month_" . date("Y-m", $ts);
+
+    // "day_" .
+    $classes["d"] = strtolower(date("l", $ts));
+
+    // "year_month_" .
+    $classes["ym"] = date("Y-m", $ts);
 
     // age binning pattern ex: 35-39
     $a = intval($row["age"]);
     if( $a === 0 ) {
-        $classes[] = "agegroup_unknown";
+
+        // agegroup_
+        $classes["ag"] = "unknown";
     } else {
         $pa = intval($a/5) * 5;
-        $classes[] = "agegroup_" . $pa . "-" . ($pa+4);
+
+        // agegroup_
+        $classes["ag"] = $pa . "-" . ($pa+4);
     }
 
     $l1 = floatval($row["latitude"]);
     $l2 = floatval($row["longitude"]);
 
     if( $l1 !== 0 && $l2 !== 0 ) {
-        $classes[] = "t_i_v_has_position_info";
+        $classes["p"] = "t_i_v_has_position_info";
     }
 
-    return( implode(" ", $classes ) );
+    return( $classes );
 }
 // classes.push( "age_" + e.agegroup.toLowerCase().replace(" ", "_") );
+
+// prefixes above row data with CSS classes
+function meta_to_classes($meta) {
+    $classes = array();
+
+    if( isset($meta["g"]) ) $classes[] = "gender_" . $meta["g"];
+    if( isset($meta["d"]) ) $classes[] = "day_" . $meta["d"];
+    if( isset($meta["ym"]) ) $classes[] = "year_month_" . $meta["ym"];
+    if( isset($meta["ag"]) ) $classes[] = "agegroup_" . $meta["ag"];
+    if( isset($meta["p"]) ) $classes[] = $meta["p"];
+
+    return( implode(" ", $classes ));
+}
 
 function data_cleanup($rows) {
     $ret = array();
 
     foreach( $rows as $row ) {
         $temp = row_cleanup($row);
-        $temp['classes'] = data_get_classes($temp);
+        $temp['data'] = data_get_classes($temp);
+        $temp['classes'] = meta_to_classes($temp['data']);#implode(" ", $temp['data'] );
         $ret[] = $temp;
     }
 
