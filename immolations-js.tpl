@@ -410,13 +410,13 @@ var immolation_project = {
 			label: 	{ x: 300, y: 20, text: immolation_project.__("gender"), style: immolation_project.styles.labels_r },
 			labels: { style: immolation_project.styles.labels_r },
 			data: 	immolation_project.field_counts,
-			key: 	"gender",
+			key: 	"g",
 			loop:	["Male", "Female"],
 			hor: 	false,
 			group:	"gender",
 			prefix:	".gender_"
 		});
-
+		return;
 		this.generate_dyn_graph({
 			paper: 	immolation_project.canvas_left.paper,
 			pp: 	{ x: 75, y: 110, w: 230, h: 240, pd: 4 },
@@ -591,7 +591,7 @@ var immolation_project = {
 	},
 
 	// visually adds a person, their data, and map marker
-	add_person: function( i, e ) {
+	add_person: function( i, node, e ) {
 
 		var div_id = "person_" + i;
 
@@ -614,30 +614,30 @@ var immolation_project = {
 
 		immolation_project.data["p"+i] = e;
 
-		var img = '';
-		if( e.image != '' ) {
-			// img = "<img sin='" + e.sinumber + "' width='150' src='" + e.image + "' />";
-			//var resize_by_pangea_f = e.image.split(".");
-			//var resize_by_pangea = resize_by_pangea_f[0] + "_w150" + resize_by_pangea_f[1];
-			e.image = this.pangea_resize( e.image, "150" );
-			img = "<img width='" + e.w + "' height='" + e.h + "' src='" + e.image + "' />";
-			//img = "<img width='" + e.w + "' height='" + e.h + "' src='" + resize_by_pangea + "' />";
+		// var img = '';
+		// if( e.image != '' ) {
+		// 	// img = "<img sin='" + e.sinumber + "' width='150' src='" + e.image + "' />";
+		// 	//var resize_by_pangea_f = e.image.split(".");
+		// 	//var resize_by_pangea = resize_by_pangea_f[0] + "_w150" + resize_by_pangea_f[1];
+		// 	e.image = this.pangea_resize( e.image, "150" );
+		// 	img = "<img width='" + e.w + "' height='" + e.h + "' src='" + e.image + "' />";
+		// 	//img = "<img width='" + e.w + "' height='" + e.h + "' src='" + resize_by_pangea + "' />";
+        //
+		// } else {
+		// 	// img = "<img sin='" + e.sinumber + "' width='150' src='http://gdb.voanews.com/C269090C-58EF-4270-8C8A-299D4E447036.png' />";
+		// 	img = "<img width='150 height='149' src='http://gdb.voanews.com/C269090C-58EF-4270-8C8A-299D4E447036.png' />";
+		// }
 
-		} else {
-			// img = "<img sin='" + e.sinumber + "' width='150' src='http://gdb.voanews.com/C269090C-58EF-4270-8C8A-299D4E447036.png' />";
-			img = "<img width='150 height='149' src='http://gdb.voanews.com/C269090C-58EF-4270-8C8A-299D4E447036.png' />";
-		}
-
-		if( e.latitude != '' && e.longitude != '' ) {
+		if( e.lat != '' && e.lon != '' ) {
 
 			var marker = new google.maps.Marker( {
 				position: new google.maps.LatLng(
 					// this.slightly_random( e.latitude ), this.slightly_random( e.longitude )
-					e.latitude, e.longitude
+					e.lat, e.lon
 				),
 				map: immolation_project.map,
 				icon: (
-					e.gender == 'Female' ?
+					e.g == 'female' ?
 					"assets/female-2.png" :
 					"assets/male-2.png"
 				),
@@ -693,29 +693,29 @@ var immolation_project = {
 		}
 
 		// programmatically insert isotope-filterable items
-		var classes = ["t_i_v" /*, "gender", "year", "day", "age", "day", "year_month" */ ];
-		classes.push( "t_i_v_id_p" + i );
-		classes.push( "gender_" + e.gender.toLowerCase() );
-		classes.push( "age_" + e.agegroup.toLowerCase().replace(" ", "_") );
-		classes.push( "day_" + e.dayofweekformula.toLowerCase() );
-		classes.push( "year_month_" + e.yearmonthformula.toLowerCase() );
-
+		// var classes = ["t_i_v" /*, "gender", "year", "day", "age", "day", "year_month" */ ];
+		// classes.push( "t_i_v_id_p" + i );
+		// classes.push( "gender_" + e.gender.toLowerCase() );
+		// classes.push( "age_" + e.agegroup.toLowerCase().replace(" ", "_") );
+		// classes.push( "day_" + e.dayofweekformula.toLowerCase() );
+		// classes.push( "year_month_" + e.yearmonthformula.toLowerCase() );
+        //
 		// classes.push( "year_month_" + e.yearformula.toLowerCase() + "-" + e.monthformula.toLowerCase() );
 
-		if( e.latitude != '' && e.longitude != '' ) classes.push( "t_i_v_has_position_info" );
+		// if( e.latitude != '' && e.longitude != '' ) classes.push( "t_i_v_has_position_info" );
 
 		//sinumber ?
-		$("#div_t_i").append(
-			"<div id='" + div_id +  "' t_i_v_id='" + i + "' class='" + classes.join(" ") + "'>" +
-				"<div class='t_i_n'>" + e.name + "<br/>{$options->label_age}" + e.age + "</div>" +
-				img +
-				"<div class='edata'>" +
-					"<div class='ecurr'>{$options->label_immolation_date}" + e.cleandate + "<br/>" + e.currentstatus + "</div>" +
-					"<div class='eloca'>{$options->label_location}" + e.locationofincident + "</div>" +
-					"<div class='ebio'>" + e.bio + "</div>" +
-				"</div>" +
-			"</div>"
-		);
+		// $("#div_t_i").append(
+		// 	"<div id='" + div_id +  "' t_i_v_id='" + i + "' class='" + classes.join(" ") + "'>" +
+		// 		"<div class='t_i_n'>" + e.name + "<br/>{$options->label_age}" + e.age + "</div>" +
+		// 		img +
+		// 		"<div class='edata'>" +
+		// 			"<div class='ecurr'>{$options->label_immolation_date}" + e.cleandate + "<br/>" + e.currentstatus + "</div>" +
+		// 			"<div class='eloca'>{$options->label_location}" + e.locationofincident + "</div>" +
+		// 			"<div class='ebio'>" + e.bio + "</div>" +
+		// 		"</div>" +
+		// 	"</div>"
+		// );
 
 	},
 
@@ -806,7 +806,7 @@ var immolation_project = {
 			immolation_project.map_options
 		);
 
-		$("#div_t_i .t_i_v").each(function(i) {
+		$("#div_t_i .t_i_v").each(function(i, e) {
 			// var classes = ["t_i_v" /*, "gender", "year", "day", "age", "day", "year_month" */ ];
 			// classes.push( "t_i_v_id_p" + i );
 			// classes.push( "gender_" + e.gender.toLowerCase() );
@@ -814,8 +814,24 @@ var immolation_project = {
 			// classes.push( "day_" + e.dayofweekformula.toLowerCase() );
 			// classes.push( "year_month_" + e.yearmonthformula.toLowerCase() );
 
+			var temp = {
+				g: $(this).attr("data-g"),
+				d: $(this).attr("data-d"),
+				ym: $(this).attr("data-ym"),
+				ag: $(this).attr("data-ag"),
+				lat: $(this).attr("data-lat"),
+				lon: $(this).attr("data-lon"),
+				name: $(".t_i_n_name", this).text()
+			};
+
+			// console.info( temp );
+			immolation_project.add_person( i, e, temp );
+
+
+			//immolation_project.add_person( i, e );
 		});
 
+		immolation_project.slides_loaded();
 		// $("#div_t_i").isotope();
 
 /*

@@ -1,5 +1,6 @@
 <?php
 require("vendor/autoload.php");
+#require("vendor/chrome.php");
 require("data.php");
 
 # templating is decent here
@@ -30,4 +31,7 @@ foreach( $data as $k => $v ) {
     $smarty->assign($k, $v);
 }
 
+//ChromePhp::info( $sheet[0] );
+#echo "<PRE>";print_r( $text_all ); die;
+#ChromePhp::table( $text_all["English"] );
 $smarty->display( "immolations_i.tpl" );

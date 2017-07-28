@@ -48,6 +48,9 @@ function data_get_classes($row) {
 
     if( $l1 !== 0 && $l2 !== 0 ) {
         $classes["p"] = "t_i_v_has_position_info";
+
+        $classes["lat"] = $l1;
+        $classes["lon"] = $l2;
     }
 
     return( $classes );
