@@ -12,7 +12,7 @@ var immolation_project = {
 		yearmonthformula: {},
 		gender: {},
 		agegroup: {},
-		dayofweekformula: {}
+		dayofweek: {}
 	},
 	animation_length: 300,
 	marker_update_interval: 750,
@@ -148,7 +148,7 @@ var immolation_project = {
 		//$.each( this.get_keys_as_array( this.filters ), function( count_index, count_field ) {
 		//$.each( immolation_project.filters, function( count_field ) {
 
-		$.each(["yearmonthformula", "gender", "agegroup", "dayofweekformula" ], function( count_index, count_field ) {
+		$.each(["yearmonthformula", "gender", "agegroup", "dayofweek" ], function( count_index, count_field ) {
 
 			$.each( immolation_project.field_counts[count_field], function( k, v ) {
 
@@ -216,16 +216,6 @@ var immolation_project = {
 		// draw bars
 		for( i = 0; i < to_execute.length; i++ )(function(k,v) {
 
-			// temporary data fix until gdocs formulas get replaced in logic
-			if(
-				g.key == "agegroup" &&
-				typeof immolation_project.translations[k.toLowerCase()] == "undefined"
-			) {
-				return;
-			}
-
-			// if( typeof immolation_project.translations[k.toLowerCase()] == "undefined" ) return;
-
 			// pass values to iterator object, for hooks
 			g.__k = k;
 			g.__v = v;
@@ -285,7 +275,6 @@ var immolation_project = {
 
 			// histogram, days of week
 			if( g.hor == true ) {
-
 				var h = immolation_project.control_indicators[g.key][k].get_size( v );
 
 				var s = (g.pp.w - g.pp.pd2) / g.range.count;
@@ -407,24 +396,30 @@ var immolation_project = {
 		this.generate_dyn_graph({
 			paper: 	immolation_project.canvas_left.paper,
 			pp: 	{ x: 75, y: 30, w: 230, h: 80, pd: 4 },
-			label: 	{ x: 300, y: 20, text: immolation_project.__("gender"), style: immolation_project.styles.labels_r },
+			label: 	{
+				x: 300, y: 20, text: immolation_project.__("gender"),
+				style: immolation_project.styles.labels_r
+			},
 			labels: { style: immolation_project.styles.labels_r },
 			data: 	immolation_project.field_counts,
-			key: 	"g",
-			loop:	["Male", "Female"],
+			key: 	"gender",
+			loop:	["male", "female"],
 			hor: 	false,
 			group:	"gender",
 			prefix:	".gender_"
 		});
-		return;
+
 		this.generate_dyn_graph({
 			paper: 	immolation_project.canvas_left.paper,
 			pp: 	{ x: 75, y: 110, w: 230, h: 240, pd: 4 },
-			label: 	{ x: 300, y: 100, text: immolation_project.__("agegroup"), style: immolation_project.styles.labels_r },
+			label: 	{
+				x: 300, y: 100, text: immolation_project.__("agegroup"),
+				style: immolation_project.styles.labels_r
+			},
 			labels: { style: immolation_project.styles.labels_r },
 			data: 	immolation_project.field_counts,
 			key: 	"agegroup",
-			loop:	null,
+			//loop:	null,
 			hor: 	false,
 			group:	"age",
 			prefix:	".age_"
@@ -436,7 +431,7 @@ var immolation_project = {
 			label: 	{ x: 300, y: 330, text: immolation_project.__("dayofweek"), style: immolation_project.styles.labels_r },
 			labels: { style: immolation_project.styles.labels },
 			data: 	immolation_project.field_counts,
-			key: 	"dayofweekformula",
+			key: 	"dayofweek",
 			loop:	["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 			hor: 	true,
 			group:	"day",
@@ -815,19 +810,18 @@ var immolation_project = {
 			// classes.push( "year_month_" + e.yearmonthformula.toLowerCase() );
 
 			var temp = {
-				g: $(this).attr("data-g"),
-				d: $(this).attr("data-d"),
+				gender: $(this).attr("data-g"),
+				dayofweek: $(this).attr("data-d"),
 				ym: $(this).attr("data-ym"),
-				ag: $(this).attr("data-ag"),
+				agegroup: $(this).attr("data-ag"),
 				lat: $(this).attr("data-lat"),
 				lon: $(this).attr("data-lon"),
 				name: $(".t_i_n_name", this).text()
 			};
 
-			// console.info( temp );
 			immolation_project.add_person( i, e, temp );
 
-
+			if( i === 0 ) { console.info( temp ); }
 			//immolation_project.add_person( i, e );
 		});
 
